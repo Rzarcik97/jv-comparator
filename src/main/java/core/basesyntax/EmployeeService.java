@@ -12,13 +12,15 @@ public class EmployeeService {
         public int compare(Employee user1, Employee user2) {
             if (user1.getAge() != user2.getAge()) {
                 return Integer.compare(user1.getAge(), user2.getAge());
-            } else {
-                return user1.getName().compareTo(user2.getName());
             }
+            return user1.getName().compareTo(user2.getName());
         }
     };
 
     public Set<Employee> getEmployeeByOrder(List<Employee> employees) {
+        if (employees == null) {
+            return null;
+        }
         Set<Employee> eployeeSet = new TreeSet<>(employeeComparator);
         eployeeSet.addAll(employees);
         return eployeeSet;
